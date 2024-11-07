@@ -6,10 +6,10 @@ import pywavefront
 import tkinter as tk
 from tkinter import ttk
 
-#scene = pywavefront.Wavefront("objetos/sphere.obj", create_materials=True, collect_faces=True, parse=True)
-scene = pywavefront.Wavefront("objetos/tree.obj", create_materials=True, collect_faces=True, parse=True)
-#scene = pywavefront.Wavefront("objetos/CartoonTree.obj", create_materials=True, collect_faces=True, parse=True)
-#scene = pywavefront.Wavefront("objetos/medieval house.obj", create_materials=True, collect_faces=True, parse=True)
+cena = pywavefront.Wavefront("objetos/sphere.obj", create_materials=True, collect_faces=True, parse=True)
+#cena = pywavefront.Wavefront("objetos/tree.obj", create_materials=True, collect_faces=True, parse=True)
+#cena = pywavefront.Wavefront("objetos/CartoonTree.obj", create_materials=True, collect_faces=True, parse=True)
+#cena = pywavefront.Wavefront("objetos/medieval house.obj", create_materials=True, collect_faces=True, parse=True)
 
 
 pygame.init()
@@ -21,7 +21,7 @@ glEnable(GL_DEPTH_TEST)
 glMatrixMode(GL_PROJECTION)
 gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
 glMatrixMode(GL_MODELVIEW)
-glTranslatef(0.0, 0.0, -8)  # Zoom (-5 sphere, -8 tree, -15 CartoonTree, -25 medieva house)
+glTranslatef(0.0, 0.0, -5)  # Zoom (-5 sphere, -8 tree, -15 CartoonTree, -25 medieva house)
 
 # Variáveis de controle de iluminação
 ativar_difuso = None
@@ -67,11 +67,11 @@ def iluminacao():
 
 
 def desenhar():
-    for name, mesh in scene.meshes.items():
+    for name, mesh in cena.meshes.items():
         glBegin(GL_TRIANGLES)
         for face in mesh.faces:
             for vertex_i in face:
-                glVertex3fv(scene.vertices[vertex_i])
+                glVertex3fv(cena.vertices[vertex_i])
         glEnd()
 
 # Tela Tkinter
@@ -132,7 +132,7 @@ def main():
 
         # Renderização do objeto carregado
         glPushMatrix()
-        desenhar()  # Função que desenha a cena manualmente
+        desenhar() 
         glPopMatrix()
 
         # Atualização da tela
